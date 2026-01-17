@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fitness ateliér – koncept</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💪</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Anton&family=Source+Sans+3:wght@400;500;600&display=swap" as="style">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Anton&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div class="loading-screen" id="loadingScreen">
+    <div class="loader"></div>
+    <p>Načítám fitness ateliér...</p>
+  </div>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Mobile Menu Toggle -->
+  <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <nav id="mainNav">
+    <a href="#hero">Home</a>
+    <a href="#sluzby">Programy</a>
+    <a href="#rozvrh">Rozvrh</a>
+    <a href="#tym">Tým</a>
+    <a href="#membership">Membership</a>
+    <a href="#kontakt">Kontakt</a>
+  </nav>
+  <main>
+    <section class="section hero" id="hero">
+      <canvas class="gradient-canvas" id="gradientCanvas"></canvas>
+      <div class="hero__content">
+        <p class="eyebrow">Lokální fitness / ateliér</p>
+        <h1>Tréninky, které tě posunou.</h1>
+        <p class="lede">Silový základ, mobilita a kondice v malých skupinách. Jasný plán, profesionální trenéři a výsledky bez kompromisů.</p>
+        <div class="btn-row">
+          <a class="btn" href="#" onclick="openContactModal(event)">Rezervace</a>
+          <a class="btn secondary" href="#rozvrh">Podívat se na rozvrh</a>
+        </div>
+      </div>
+      <div class="hero__badge pulsing-badge">
+        <div class="pulse-ring"></div>
+        <p class="badge__label">🔥 Nově přibylo</p>
+        <p class="badge__value">42 nových členů</p>
+        <p class="badge__sublabel">za poslední měsíc</p>
+      </div>
+    </section>
+
+    <section class="section scroll-reveal" id="sluzby">
+      <div class="section__head">
+        <h2>Programy</h2>
+        <p class="muted">Silový trénink, mobilita, kondice a skupiny do 10 lidí.</p>
+      </div>
+      <div class="cards">
+        <article class="card tilt-card scroll-reveal">
+          <svg class="card-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="28" width="48" height="8" rx="4" fill="currentColor"/>
+            <circle cx="12" cy="32" r="8" stroke="currentColor" stroke-width="3" fill="none"/>
+            <circle cx="52" cy="32" r="8" stroke="currentColor" stroke-width="3" fill="none"/>
+          </svg>
+          <h3>Strength Base</h3>
+          <p>Technika základních cviků, postupné navyšování váhy, kontrola formy v každé sérii.</p>
+        </article>
+        <article class="card tilt-card">
+          <svg class="card-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M32 8 Q48 24 32 40 Q16 24 32 8" stroke="currentColor" stroke-width="3" fill="none"/>
+            <path d="M32 24 Q48 40 32 56 Q16 40 32 24" stroke="currentColor" stroke-width="3" fill="none"/>
+          </svg>
+          <h3>Move & Mobility</h3>
+          <p>Rotace, extenze, dýchání. Lepší rozsahy bez ztráty stability a síly.</p>
+        </article>
+        <article class="card tilt-card">
+          <svg class="card-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 40 L20 20 L32 35 L44 15 L56 30" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="20" cy="20" r="3" fill="currentColor"/>
+            <circle cx="32" cy="35" r="3" fill="currentColor"/>
+            <circle cx="44" cy="15" r="3" fill="currentColor"/>
+          </svg>
+          <h3>Condition</h3>
+          <p>Intervaly, běžecká a veslařská technika, práce s tempem a tepovkou.</p>
+        </article>
+        <article class="card tilt-card">
+          <svg class="card-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="8" stroke="currentColor" stroke-width="2" fill="none"/>
+            <circle cx="44" cy="20" r="8" stroke="currentColor" stroke-width="2" fill="none"/>
+            <circle cx="20" cy="44" r="8" stroke="currentColor" stroke-width="2" fill="none"/>
+            <circle cx="44" cy="44" r="8" stroke="currentColor" stroke-width="2" fill="none"/>
+          </svg>
+          <h3>Small Group</h3>
+          <p>Max 10 lidí, jasný plán na 6 týdnů, trenér na place a průběžný feedback.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="rozvrh">
+      <div class="section__head">
+        <h2>Rozvrh</h2>
+        <p class="muted">Ranní, polední i večerní bloky. Rezervace online.</p>
+      </div>
+      <div class="case-grid">
+        <article class="case">
+          <div class="case__meta">Pondělí & Středa</div>
+          <h3>Strength Base</h3>
+          <p>06:30 · 12:00 · 18:00</p>
+          <dl class="kpis">
+            <div><dt>10 míst</dt><dd>technika + kondice</dd></div>
+            <div><dt>75 min</dt><dd>cviky + síla</dd></div>
+          </dl>
+        </article>
+        <article class="case">
+          <div class="case__meta">Úterý & Čtvrtek</div>
+          <h3>Move & Mobility</h3>
+          <p>07:00 · 17:00 · 19:00</p>
+          <dl class="kpis">
+            <div><dt>8 míst</dt><dd>mobilita + core</dd></div>
+            <div><dt>60 min</dt><dd>rozsah + kontrola</dd></div>
+          </dl>
+        </article>
+        <article class="case">
+          <div class="case__meta">Pátek</div>
+          <h3>Condition</h3>
+          <p>06:30 · 12:00 · 17:30</p>
+          <dl class="kpis">
+            <div><dt>12 míst</dt><dd>intervaly + tempo</dd></div>
+            <div><dt>50 min</dt><dd>tepovka + práce</dd></div>
+          </dl>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="proces">
+      <div class="section__head">
+        <h2>Jak trénujeme</h2>
+        <p class="muted">Jasný plán, malé skupiny, progres měřený každé 4 týdny.</p>
+      </div>
+      <div class="process">
+        <article class="step">
+          <p class="step__label">1 · Start</p>
+          <h3>Úvodní screening</h3>
+          <p>Mobilita, dech, základní vzory pohybu. Nastavíme startovní váhy a priority.</p>
+        </article>
+        <article class="step">
+          <p class="step__label">2 · Program</p>
+          <h3>6týdenní blok</h3>
+          <p>Rozpis tréninků, tempo, objem, poznámky trenéra. Vše sdílené online.</p>
+        </article>
+        <article class="step">
+          <p class="step__label">3 · Progres</p>
+          <h3>Test + úpravy</h3>
+          <p>Check-in po 4 a 6 týdnech, úpravy váhy a rozsahů, doporučení k regeneraci.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="tym">
+      <div class="section__head">
+        <h2>Trenéři</h2>
+        <p class="muted">Na place v každé hodině.</p>
+      </div>
+      <div class="team">
+        <article class="person">
+          <h3>Anna · Strength</h3>
+          <p>Technika dřepu, mrtvého tahu a pressů. Učí bezpečný progres.</p>
+        </article>
+        <article class="person">
+          <h3>Tomáš · Conditioning</h3>
+          <p>Intervaly, tempo běhu a vesla. Hlídá tepovky a regeneraci.</p>
+        </article>
+        <article class="person">
+          <h3>Lucie · Mobility</h3>
+          <p>Rotace, dech, core. Pomáhá odstranit limity v rozsahu.</p>
+        </article>
+        <article class="person">
+          <h3>David · Program</h3>
+          <p>Staví bloky, sleduje data a upravuje plán podle progresu.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="membership">
+      <div class="section__head">
+        <h2>Membership</h2>
+        <p class="muted">Flexibilní plány od jednoho tréninku do neomezeného přístupu.</p>
+      </div>
+      <div class="pricing-grid">
+        <article class="pricing-card">
+          <div class="pricing-label">Drop-in</div>
+          <h3>Jeden trénink</h3>
+          <p class="price">200 Kč</p>
+          <ul class="pricing-list">
+            <li>Jakýkoli program</li>
+            <li>Bez vazby</li>
+            <li>Přijď si vyzkoušet</li>
+          </ul>
+          <button class="btn pricing-btn">Zarezervovat</button>
+        </article>
+        <article class="pricing-card featured">
+          <div class="pricing-label pricing-label--featured">Nejoblíbenější</div>
+          <h3>4 tréninky/měsíc</h3>
+          <p class="price">1 990 Kč</p>
+          <ul class="pricing-list">
+            <li>Libovolný výběr hodin</li>
+            <li>Měsíční přístup</li>
+            <li>Trenér za zády</li>
+            <li>Online program</li>
+          </ul>
+          <button class="btn pricing-btn">Začít hned</button>
+        </article>
+        <article class="pricing-card">
+          <div class="pricing-label">Unlimited</div>
+          <h3>Neomezeno</h3>
+          <p class="price">4 490 Kč</p>
+          <ul class="pricing-list">
+            <li>Všechny tréninky</li>
+            <li>Bez limitů</li>
+            <li>Priorita v rezervaci</li>
+            <li>1:1 konzultace</li>
+          </ul>
+          <button class="btn pricing-btn">Vyzkoušet</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="stats">
+      <div class="section__head">
+        <h2>Výsledky v číslech</h2>
+        <p class="muted">Měřitelný progres našich členů</p>
+      </div>
+      <div class="stats-grid">
+        <article class="stat-card scroll-reveal">
+          <div class="stat-number">98%</div>
+          <div class="stat-label">Členů pokračuje</div>
+          <div class="progress-bar">
+            <div class="progress-fill" data-width="98"></div>
+          </div>
+        </article>
+        <article class="stat-card scroll-reveal">
+          <div class="stat-number">450+</div>
+          <div class="stat-label">Aktivních členů</div>
+          <div class="progress-bar">
+            <div class="progress-fill" data-width="85"></div>
+          </div>
+        </article>
+        <article class="stat-card scroll-reveal">
+          <div class="stat-number">4.9/5</div>
+          <div class="stat-label">Hodnocení</div>
+          <div class="progress-bar">
+            <div class="progress-fill" data-width="98"></div>
+          </div>
+        </article>
+        <article class="stat-card scroll-reveal">
+          <div class="stat-number">6 let</div>
+          <div class="stat-label">Na trhu</div>
+          <div class="progress-bar">
+            <div class="progress-fill" data-width="75"></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="galerie">
+      <div class="section__head">
+        <h2>Komunita</h2>
+        <p class="muted">Fotky z tréninků, progres a vibe</p>
+      </div>
+      <div class="gallery-grid">
+        <article class="gallery-item" onclick="openLightbox(0)">
+          <div class="gallery-image" style="background: url('images/Trénink.png') center/cover;">
+            <div class="gallery-overlay">
+              <span class="gallery-icon">🔍</span>
+            </div>
+            <p class="gallery-text">Trénink</p>
+          </div>
+        </article>
+        <article class="gallery-item" onclick="openLightbox(1)">
+          <div class="gallery-image" style="background: url('images/Síla.png') center/cover;">
+            <div class="gallery-overlay">
+              <span class="gallery-icon">🔍</span>
+            </div>
+            <p class="gallery-text">Síla</p>
+          </div>
+        </article>
+        <article class="gallery-item" onclick="openLightbox(2)">
+          <div class="gallery-image" style="background: url('images/Mobilita.png') center/cover;">
+            <div class="gallery-overlay">
+              <span class="gallery-icon">🔍</span>
+            </div>
+            <p class="gallery-text">Mobilita</p>
+          </div>
+        </article>
+        <article class="gallery-item" onclick="openLightbox(3)">
+          <div class="gallery-image" style="background: url('images/Kondice.png') center/cover;">
+            <div class="gallery-overlay">
+              <span class="gallery-icon">🔍</span>
+            </div>
+            <p class="gallery-text">Kondice</p>
+          </div>
+        </article>
+        <article class="gallery-item" onclick="openLightbox(4)">
+          <div class="gallery-image" style="background: url('images/Komunita.png') center/cover;">
+            <div class="gallery-overlay">
+              <span class="gallery-icon">🔍</span>
+            </div>
+            <p class="gallery-text">Komunita</p>
+          </div>
+        </article>
+        <article class="gallery-item" onclick="openLightbox(5)">
+          <div class="gallery-image" style="background: url('images/Progres.png') center/cover;">
+            <div class="gallery-overlay">
+              <span class="gallery-icon">🔍</span>
+            </div>
+            <p class="gallery-text">Progres</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+      <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+      <button class="lightbox-prev" onclick="event.stopPropagation(); changeLightboxImage(-1)">‹</button>
+      <button class="lightbox-next" onclick="event.stopPropagation(); changeLightboxImage(1)">›</button>
+      <div class="lightbox-content" onclick="event.stopPropagation()">
+        <div class="lightbox-image" id="lightboxImage"></div>
+        <p class="lightbox-caption" id="lightboxCaption"></p>
+      </div>
+    </div>
+
+    <section class="section" id="faq">
+      <div class="section__head">
+        <h2>Často kladené otázky</h2>
+        <p class="muted">Odpovědi na to, co vás zajímá.</p>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item" ontoggle="toggleFAQ(this)">
+          <summary>
+            <h3>Jak začít, pokud jsem úplný začátečník?</h3>
+            <span class="faq-icon">+</span>
+          </summary>
+          <p>Začneš úvodním screeningem s trenérem. Nastavíme mobilitu, základní vzory pohybu a startovní váhy. Pak budeš tréninky absolvovat v malé skupině se zpětnou vazbou na formu.</p>
+        </details>
+        <details class="faq-item" ontoggle="toggleFAQ(this)">
+          <summary>
+            <h3>Mohu si vybrat kterýkoliv čas?</h3>
+            <span class="faq-icon">+</span>
+          </summary>
+          <p>Ano, podle tarifu. Drop-in a 4 tréninky/měsíc máš svobodu. U Unlimited si můžeš zamluvit jakýkoli časový blok bez limitu. Prioritu máš, pokud je skupina plná.</p>
+        </details>
+        <details class="faq-item" ontoggle="toggleFAQ(this)">
+          <summary>
+            <h3>Jak dlouho trvá vidět výsledky?</h3>
+            <span class="faq-icon">+</span>
+          </summary>
+          <p>Kondice a pocit energii během 3-4 týdnů. Viditelné změny na silě a únavě typicky za 6-8 týdnů. Záleží na frekvenci a regeneraci.</p>
+        </details>
+        <details class="faq-item" ontoggle="toggleFAQ(this)">
+          <summary>
+            <h3>Mám zranění – mohu přesto chodit?</h3>
+            <span class="faq-icon">+</span>
+          </summary>
+          <p>Ano. Řekni nám o zranění při screeningu. Trenér ti upraví cvičení a může ti doporučit fyzioterapeutu. Vždy máš možnost modifikace.</p>
+        </details>
+        <details class="faq-item">
+          <summary>
+            <h3>Osobní přístup vs. skupinové cvičení</h3>
+            <span class="faq-icon">+</span>
+          </summary>
+          <p>Skupinové cvičení je finančně méně náročnější a trenér pracuje s více účastníky současně. Osobní přístup trenéra zahrnuje program plně přizpůsobený potřebám zákazníka, důslednou kontrolu na techniky a rychlejší a efektivnější progres.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="section" id="testimonials">
+      <div class="section__head">
+        <h2>Recenze členů</h2>
+        <p class="muted">Co si o nás myslí naši klienti.</p>
+      </div>
+      <div class="testimonials-grid">
+        <article class="testimonial">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Poprvé jsem si uvědomil, že forma je o součinnosti, ne jen o síle. Trenéři tu opravdu vidí a korigují."</p>
+          <div class="testimonial-author">
+            <p class="author-name">Martin K.</p>
+            <p class="author-role">Člen 4 měsíce · Strength Base</p>
+          </div>
+        </article>
+        <article class="testimonial">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Nejlepší investice do zdraví, kterou jsem udělal. Komunita je skvělá a vibe tady není jako v běžném fitku."</p>
+          <div class="testimonial-author">
+            <p class="author-name">Eva P.</p>
+            <p class="author-role">Člen 6 měsíců · Unlimited</p>
+          </div>
+        </article>
+        <article class="testimonial">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Měla jsem bolest zad 2 roky. Po měsíci mobility a corepu si ji skoro nepamatuji. Vážně děkuji Lucii."</p>
+          <div class="testimonial-author">
+            <p class="author-name">Jana L.</p>
+            <p class="author-role">Člen 2 měsíce · Move & Mobility</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section contact" id="kontakt">
+      <div class="contact__box">
+        <div>
+          <p class="eyebrow">Rezervace</p>
+          <h2>Napiš nám, domluvíme první trénink.</h2>
+          <p class="muted">Stačí jméno, email a kdy chceš začít. Ozveme se do 24 hodin.</p>
+          <ul class="contact__list">
+            <li>hi@fitatelier.cz</li>
+            <li>+420 777 000 111</li>
+            <li>Praha 7 / Holešovice</li>
+          </ul>
+        </div>
+        <form class="contact__form">
+          <label>
+            Jméno
+            <input type="text" name="name" placeholder="Vaše jméno">
+          </label>
+          <label>
+            Email
+            <input type="email" name="email" placeholder="email@firma.cz">
+          </label>
+          <label>
+            Preferovaný čas
+            <input type="text" name="time" placeholder="např. ráno / večer">
+          </label>
+          <label>
+            Cíl
+            <input type="text" name="goal" placeholder="síla, kondice, mobilita">
+          </label>
+          <button type="submit" class="btn">Rezervovat</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Contact Modal -->
+  <div class="modal" id="contactModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeContactModal()">✕</button>
+      <h2>Rezervovat první trénink</h2>
+      <p class="modal-subtitle">Zdarma, žádné závazky.</p>
+      <form class="contact__form" onsubmit="submitForm(event)">
+        <label>
+          Jméno
+          <input type="text" name="name" placeholder="Vaše jméno" required>
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" placeholder="email@firma.cz" required>
+        </label>
+        <label>
+          Preferovaný čas
+          <input type="text" name="time" placeholder="např. ráno / večer">
+        </label>
+        <label>
+          Tvůj cíl
+          <input type="text" name="goal" placeholder="síla, kondice, mobilita">
+        </label>
+        <button type="submit" class="btn">Rezervovat trénink</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Backdrop -->
+  <div class="modal-backdrop" id="modalBackdrop" onclick="closeContactModal()"></div>
+
+  <script>
+    function openContactModal(e) {
+      e.preventDefault();
+      document.getElementById('contactModal').classList.add('active');
+      document.getElementById('modalBackdrop').classList.add('active');
+    }
+
+    function closeContactModal() {
+      document.getElementById('contactModal').classList.remove('active');
+      document.getElementById('modalBackdrop').classList.remove('active');
+    }
+
+    function submitForm(e) {
+      e.preventDefault();
+      alert('Děkujeme za registraci! Brzy se vám ozvu.');
+      closeContactModal();
+    }
+
+    // Loading Screen
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loadingScreen').style.opacity = '0';
+        setTimeout(() => {
+          document.getElementById('loadingScreen').style.display = 'none';
+        }, 500);
+      }, 1000);
+    });
+
+    // Scroll Progress Bar
+    window.addEventListener('scroll', () => {
+      const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      document.getElementById('scrollProgress').style.width = scrolled + '%';
+    });
+
+    // Scroll Reveal Animation
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+
+    // 3D Tilt Cards
+    document.querySelectorAll('.tilt-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = (y - centerY) / 10;
+        const rotateY = (centerX - x) / 10;
+        
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+      });
+    });
+
+    // Animated Counter
+    function animateCounter(element, target, duration = 2000) {
+      const start = 0;
+      const increment = target / (duration / 16);
+      let current = start;
+      const originalText = element.textContent;
+      const suffix = originalText.replace(/^\d+/, '').trim();
+      
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          element.textContent = suffix ? `${target} ${suffix}` : target;
+          clearInterval(timer);
+        } else {
+          element.textContent = suffix ? `${Math.floor(current)} ${suffix}` : Math.floor(current);
+        }
+      }, 16);
+    }
+
+    // Trigger counter animation on scroll
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.dataset.counted) {
+          const value = parseInt(entry.target.textContent);
+          entry.target.dataset.counted = 'true';
+          animateCounter(entry.target, value);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.badge__value').forEach(el => {
+      if (el.textContent.includes('42')) {
+        counterObserver.observe(el);
+      }
+    });
+
+    // Toast Notification
+    function showToast(message, type = 'success') {
+      const toast = document.createElement('div');
+      toast.className = `toast toast-${type}`;
+      toast.textContent = message;
+      document.body.appendChild(toast);
+      
+      setTimeout(() => toast.classList.add('show'), 100);
+      setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+
+    // Enhanced submit
+    const originalSubmit = submitForm;
+    submitForm = function(e) {
+      e.preventDefault();
+      showToast('Rezervace přijata! Těším se na tebe.');
+      closeContactModal();
+    };
+
+    // Animated Mesh Gradient Canvas (optimized for mobile)
+    const canvas = document.getElementById('gradientCanvas');
+    const ctx = canvas.getContext('2d');
+    
+    // Reduce animation quality on mobile devices
+    const isMobile = window.innerWidth <= 768;
+    const animationSpeed = isMobile ? 0.003 : 0.005;
+    
+    function resizeCanvas() {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+    
+    let time = 0;
+    function animateGradient() {
+      time += animationSpeed;
+      
+      const gradient = ctx.createLinearGradient(
+        Math.sin(time) * canvas.width,
+        Math.cos(time * 0.8) * canvas.height,
+        Math.cos(time * 1.2) * canvas.width,
+        Math.sin(time * 0.9) * canvas.height
+      );
+      
+      gradient.addColorStop(0, `rgba(255, 59, 48, ${0.15 + Math.sin(time) * 0.05})`);
+      gradient.addColorStop(0.5, `rgba(255, 107, 94, ${0.1 + Math.cos(time * 1.3) * 0.05})`);
+      gradient.addColorStop(1, `rgba(12, 12, 12, 0.8)`);
+      
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      requestAnimationFrame(animateGradient);
+    }
+    animateGradient();
+
+    // Progress Bars Animation
+    const progressObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const fill = entry.target.querySelector('.progress-fill');
+          if (fill && !fill.classList.contains('animated')) {
+            fill.classList.add('animated');
+            const width = fill.dataset.width;
+            setTimeout(() => {
+              fill.style.width = width + '%';
+            }, 200);
+          }
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.stat-card').forEach(el => progressObserver.observe(el));
+
+    // Lightbox
+    const lightboxImages = [
+      { background: 'url(\'images/Trénink.png\') center/cover', text: 'Trénink' },
+      { background: 'url(\'images/Síla.png\') center/cover', text: 'Síla' },
+      { background: 'url(\'images/Mobilita.png\') center/cover', text: 'Mobilita' },
+      { background: 'url(\'images/Kondice.png\') center/cover', text: 'Kondice' },
+      { background: 'url(\'images/Komunita.png\') center/cover', text: 'Komunita' },
+      { background: 'url(\'images/Progres.png\') center/cover', text: 'Progres' }
+    ];
+    
+    let currentLightboxIndex = 0;
+
+    function openLightbox(index) {
+      currentLightboxIndex = index;
+      updateLightboxImage();
+      document.getElementById('lightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function changeLightboxImage(direction) {
+      currentLightboxIndex = (currentLightboxIndex + direction + lightboxImages.length) % lightboxImages.length;
+      updateLightboxImage();
+    }
+
+    function updateLightboxImage() {
+      const img = lightboxImages[currentLightboxIndex];
+      document.getElementById('lightboxImage').style.background = img.background;
+      document.getElementById('lightboxCaption').textContent = img.text;
+    }
+
+    // FAQ Toggle Animation
+    function toggleFAQ(details) {
+      const icon = details.querySelector('.faq-icon');
+      if (details.open) {
+        icon.style.transform = 'rotate(45deg)';
+      } else {
+        icon.style.transform = 'rotate(0deg)';
+      }
+    }
+
+    // Close lightbox on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && document.getElementById('lightbox').classList.contains('active')) {
+        closeLightbox();
+      }
+    });
+
+    // Mobile Menu Toggle
+    function toggleMenu() {
+      const nav = document.getElementById('mainNav');
+      const toggle = document.getElementById('menuToggle');
+      nav.classList.toggle('mobile-active');
+      toggle.classList.toggle('active');
+    }
+
+    // Close menu when clicking nav link
+    document.querySelectorAll('#mainNav a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+          document.getElementById('mainNav').classList.remove('mobile-active');
+          document.getElementById('menuToggle').classList.remove('active');
+        }
+      });
+    });
+  </script>
+
+  <!-- Floating Action Button - Scroll to Top -->
+  <button class="fab" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Zpět nahoru" aria-label="Zpět nahoru">
+    <svg class="fab-icon" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+      <path d="M16 25 V9" />
+      <path d="M9 16 L16 9 L23 16" />
+    </svg>
+  </button>
+</body>
+</html>

@@ -1,0 +1,28 @@
+# 💪 Fitness Web - Jednostránková prezentace fitness studia s programy, rozvrhem, recenzemi a kontaktem.
+
+- Čisté HTML, moderní CSS (Grid, Flexbox) a vanilla JavaScript pro interakce.
+- Google Fonts: Anton, Source Sans 3.
+- Bez build kroku; běží staticky v prohlížeči.
+
+## Frontend
+- **HTML5** - struktura stránky
+- **CSS3** - (Flexbox, Grid, Animace)
+- **JavaScript** - ES6+
+- **Adobe Firefly** - AI obrázky
+
+## ✨ Funkce
+- Hero sekce s CTA a pulzující badge
+- Programy (4 karty) s popisem zaměření
+- Rozvrh bloků s časovými sloty a kapacitami
+- Tým trenérů a jejich specializace
+- Membership plány a FAQ
+- Recenze členů (testimonials)
+- Kontakt s odkazem na rezervaci
+
+## 🎨 UX a animace
+- Loading screen a scroll progress bar
+- Tilt efekt karet a hover animace
+- Gradientové pozadí v hero, scroll reveal přechody
+- Mobile menu toggle a responzivní layout
+
+
